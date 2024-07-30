@@ -1,18 +1,28 @@
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import { useAppStore } from "../stores/useAppStore"
 
 export default function Header() {
-
+    const [searchFilters, setSearchFilters] = useState({
+        ingredient: '',
+        category: ''
+    })
     const { pathname } = useLocation()
     const isHome = useMemo(() => pathname === '/', [pathname])
     
-    const { fetchCategories } = useAppStore() 
+    const { fetchCategories, categories } = useAppStore() 
 
     useEffect(() => {
         fetchCategories()
     }, [])
     
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+        setSearchFilters({
+            ...searchFilters,
+            [e.target.id]: e.target.value
+        })
+    }
+
 
     return (
         <header className={ isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
@@ -53,21 +63,27 @@ export default function Header() {
                                 name="ingredient" 
                                 className="p-3 w-full rounded-lg"
                                 placeholder="Nombre o Ingrediente. Ej. Tequila, Vodka..."
+                                value={searchFilters.ingredient}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="space-y-4">
                             <label 
-                                htmlFor="ingredient"
+                                htmlFor="category"
                                 className="block text-white uppercase font-extrabold text-lg"
                             >Categoría</label>
 
                             <select 
-                                id="ingredient" 
-                                name="ingredient" 
+                                id="category" 
+                                name="category" 
                                 className="p-3 w-full rounded-lg"
+                                value={searchFilters.category}
+                                onChange={handleChange}
                             >
                                 <option value="">-- Seleccione --</option>
-
+                                {categories.drinks.map( drink => (
+                                    <option key={drink.strCategory} value={drink.strCategory}>{drink.strCategory}</option>
+                                ))}
                             </select>
                         </div>
 
