@@ -7,10 +7,11 @@ export default function Header() {
         ingredient: '',
         category: ''
     })
+    const [error, setError] = useState('')
     const { pathname } = useLocation()
     const isHome = useMemo(() => pathname === '/', [pathname])
     
-    const { fetchCategories, categories } = useAppStore() 
+    const { fetchCategories, categories, searchRecipes } = useAppStore() 
 
     useEffect(() => {
         fetchCategories()
@@ -23,6 +24,21 @@ export default function Header() {
         })
     }
 
+    const handleSubmit = ( e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        
+        if(Object.values(searchFilters).includes('')){
+            setError('Todos los campos son obligatorios!')
+            return
+        }
+        
+        searchRecipes(searchFilters)
+
+        setSearchFilters({
+            ingredient: '',
+            category: ''
+        })
+    }
 
     return (
         <header className={ isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
@@ -50,7 +66,10 @@ export default function Header() {
                 </div>
 
                 { isHome && (
-                    <form className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
+                    <form 
+                        className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+                        onSubmit={handleSubmit}
+                    >
                         <div className="space-y-4">
                             <label 
                                 htmlFor="ingredient"
