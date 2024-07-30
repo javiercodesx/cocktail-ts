@@ -7,7 +7,7 @@ export default function Header() {
     const isHome = useMemo(() => pathname === '/', [pathname])
 
     return (
-        <header className="bg-slate-800">
+        <header className={ isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
             <div className="mx-auto container px-5 py-12">
                 <div className="flex justify-between items-center">
                     <div>
@@ -32,7 +32,7 @@ export default function Header() {
                 </div>
 
                 { isHome && (
-                    <form className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-24 p-10 rounded-lg shadow space-y-6">
+                    <form className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
                         <div className="space-y-4">
                             <label 
                                 htmlFor="ingredient"
