@@ -70,7 +70,7 @@ export default function Header() {
                         className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
                         onSubmit={handleSubmit}
                     >
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <label 
                                 htmlFor="ingredient"
                                 className="block text-white uppercase font-extrabold text-lg"
@@ -86,7 +86,7 @@ export default function Header() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <label 
                                 htmlFor="category"
                                 className="block text-white uppercase font-extrabold text-lg"
@@ -109,7 +109,7 @@ export default function Header() {
                         <input 
                             type="submit" 
                             value='Buscar Recetas' 
-                            className="cursor-pointer bg-orange-700 hover:bg-orange-800 w-full rounded-lg p-2 uppercase" 
+                            className="cursor-pointer bg-orange-700 hover:bg-orange-800 w-full rounded-lg p-3 uppercase text-white font-bold" 
                         />
                     </form>
                 )}
