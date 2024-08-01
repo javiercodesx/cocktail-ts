@@ -87,7 +87,7 @@ export default function Modal() {
                                 closeModal()
                             }}
                         >
-                            {favoritesExists(selectedRecipe.idDrink) ? 'Elminar de Favoritos' : 'Agregar a Favoritos'}
+                            {favoritesExists(selectedRecipe.idDrink) ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
                         </button>
                     </div>
                     

@@ -33,7 +33,7 @@ export default function Header() {
         }
         
         searchRecipes(searchFilters)
-
+        setError('')
         setSearchFilters({
             ingredient: '',
             category: ''
@@ -70,6 +70,11 @@ export default function Header() {
                         className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
                         onSubmit={handleSubmit}
                     >
+                        {error && (
+                            <h3 className="text-white uppercase text-sm p-3 bg-red-500 text-center rounded font-semibold">
+                                {error}
+                            </h3>
+                        )}
                         <div className="space-y-3">
                             <label 
                                 htmlFor="ingredient"

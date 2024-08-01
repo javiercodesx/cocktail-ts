@@ -3,7 +3,7 @@ import Header from "../components/Header"
 import Modal from "../components/Modal"
 import { useEffect } from "react"
 import { useAppStore } from "../stores/useAppStore"
-import Notification from "../components/Notification"
+import { ToastContainer } from "react-toastify"
 
 export default function Layout() {
   const { loadFromStorage } = useAppStore()
@@ -20,8 +20,9 @@ export default function Layout() {
             <Outlet/>
         </main>
 
+
+        <ToastContainer />
         <Modal/>
-        <Notification/>
     </>
   )
 }

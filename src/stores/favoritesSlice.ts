@@ -1,5 +1,7 @@
 import { StateCreator } from "zustand";
 import { Recipe } from "../types";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export type FavoritesSliceType = {
     favorites: Recipe[],
@@ -16,10 +18,16 @@ export const favoritesSlice : StateCreator<FavoritesSliceType> = (set, get) => (
             set({
                 favorites: get().favorites.filter( favorite => favorite.idDrink !== recipe.idDrink)
             })
+            toast.error("Removed!", {
+                position: "bottom-right"
+              })
         }else{
             set({
                 favorites: [...get().favorites, recipe]
             })
+            toast.success("Added Succesfully!", {
+                position: "bottom-right"
+              })
         }
         localStorage.setItem('favorites', JSON.stringify(get().favorites))
     },
