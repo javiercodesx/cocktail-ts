@@ -9,7 +9,7 @@ export default function Layout() {
   const { loadFromStorage } = useAppStore()
 
   useEffect(() => {
-    
+    loadFromStorage()
   }, [loadFromStorage])
   
 
