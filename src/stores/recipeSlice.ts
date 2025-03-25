@@ -44,9 +44,17 @@ export const recipesSlice : StateCreator<RecipesSliceType> = (set) => ({
         }))
     },
     closeModal: () => {
-        set(() => ({
-            modal: false,
-            selectedRecipe: {} as Recipe
-        }))
+        set((state) => ({
+            ...state,
+            modal: false, // Cierra el modal inmediatamente
+        }));
+    
+        // Retrasa el reseteo de la receta para que el modal se cierre con la información aún visible
+        setTimeout(() => {
+            set((state) => ({
+                ...state,
+                selectedRecipe: {} as Recipe, // Limpia los datos después del cierre
+            }));
+        }, 400)
     }
 })
